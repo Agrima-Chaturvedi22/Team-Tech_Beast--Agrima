@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Details — KindlyHeart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --peach: #ffd4c4;
+    --peach-soft: #ffe6da;
+    --peach-deep: #f6b79f;
+    --coral: #e8957a;
+    --coral-dark: #c96f58;
+    --cream: #fffaf7;
+    --brown: #5c4033;
+    --brown-soft: #8b6f5c;
+    --green-soft: #7aab8f;
+    --shadow: 0 16px 44px rgba(201, 111, 88, 0.18);
+    --radius: 22px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: "DM Sans", sans-serif;
+    background: linear-gradient(180deg, var(--peach) 0%, var(--peach-soft) 32%, var(--cream) 60%);
+    color: var(--brown);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  .container { width: min(1000px, 92%); margin: 0 auto; }
+
+  /* Header */
+  .header { padding: 1.5rem 0; }
+
+  .header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Playfair Display", serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--coral-dark);
+  }
+
+  .logo__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--coral);
+    color: white;
+    font-size: 1.1rem;
+  }
+
+  .step-pill {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(201, 111, 88, 0.25);
+    color: var(--coral-dark);
+    font-weight: 600;
+    font-size: 0.82rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+  }
+
+  /* Hero */
+  .hero { text-align: center; padding: 2.5rem 0 1.5rem; }
+
+  .hero__icon { font-size: 2.4rem; margin-bottom: 0.75rem; }
+
+  .hero h1 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero p {
+    color: var(--brown-soft);
+    max-width: 540px;
+    margin: 0 auto;
+    font-size: 1.02rem;
+  }
+
+  /* Trust strip */
+  .trust-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 1.75rem 0 0.5rem;
+  }
+
+  .trust-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(201, 111, 88, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--brown-soft);
+  }
+
+  /* Form section */
+  .intake { padding: 2rem 0 4rem; display: flex; justify-content: center; }
+
+  .card {
+    width: min(640px, 100%);
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 2.25rem;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 212, 196, 0.8);
+  }
+
+  .card__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card h2 {
+    font-family: "Playfair Display", serif;
+    color: var(--brown);
+    margin-bottom: 0.35rem;
+  }
+
+  .card__subtitle { color: var(--brown-soft); font-size: 0.95rem; }
+
+  .card__badge {
+    background: var(--peach);
+    color: var(--coral-dark);
+    font-weight: 700;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--coral-dark);
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .section-label:first-of-type { margin-top: 0; }
+
+  .intake-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .field--full { grid-column: 1 / -1; }
+
+  @media (max-width: 600px) {
+    .intake-grid { grid-template-columns: 1fr; }
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .field label { font-size: 0.86rem; font-weight: 600; color: var(--brown-soft); }
+
+  .field input,
+  .field select {
+    padding: 0.8rem 1rem;
+    border: 1.5px solid var(--peach);
+    border-radius: 12px;
+    background: #fffaf7;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--brown);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .field input:focus,
+  .field select:focus {
+    outline: none;
+    border-color: var(--coral);
+    box-shadow: 0 0 0 3px rgba(232, 149, 122, 0.2);
+  }
+
+  .btn {
+    margin-top: 0.75rem;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 1.02rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn--primary {
+    background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+    color: white;
+    box-shadow: 0 10px 26px rgba(201, 111, 88, 0.35);
+  }
+
+  .btn--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(201, 111, 82, 0.4);
+  }
+
+  .btn--primary:active { transform: translateY(0); }
+
+  .privacy-note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--brown-soft);
+    justify-content: center;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--brown-soft);
+    font-size: 0.85rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn--primary { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header__inner">
+      <div class="logo"><span class="logo__icon">♥</span> KindlyHeart</div>
+      <span class="step-pill">Step 1 of 2 — Patient Details</span>
+    </div>
+  </header>
+
+  <section class="hero container">
+    <div class="hero__icon">🩺</div>
+    <h1>Let's start with the basics</h1>
+    <p>A few patient details help us keep your risk check organized. It takes less than a minute.</p>
+
+    <div class="trust-strip">
+      <span class="trust-chip">🔒 Kept on this device only</span>
+      <span class="trust-chip">⏱️ Under 1 minute</span>
+      <span class="trust-chip">📋 8 quick fields</span>
+    </div>
+  </section>
+
+  <section class="intake container">
+    <div class="card">
+      <div class="card__head">
+        <div>
+          <h2>Patient Details</h2>
+          <p class="card__subtitle">Fill these in, then continue to your heart risk check.</p>
+        </div>
+        <span class="card__badge">Step 1/2</span>
+      </div>
+
+      <form id="patientForm">
+
+        <p class="section-label">Basic Information</p>
+        <div class="intake-grid">
+          <div class="field field--full">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Aditi Sharma" required>
+          </div>
+
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="1" max="120" placeholder="e.g. 45" required>
+          </div>
+
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="section-label">Contact Details</p>
+        <div class="intake-grid">
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g. 98765 43210" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Email (optional)</label>
+            <input type="email" id="email" name="email" placeholder="e.g. name@email.com">
+          </div>
+
+          <div class="field field--full">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="House no., street, area" required>
+          </div>
+
+          <div class="field">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Baihar" required>
+          </div>
+
+          <div class="field">
+            <label for="pincode">Pincode</label>
+            <input type="text" id="pincode" name="pincode" placeholder="e.g. 481115" required>
+          </div>
+        </div>
+
+        <button type="submit" id="checkPredictionBtn" class="btn btn--primary">Check Prediction →</button>
+
+        <p class="privacy-note">🔒 Your details stay in this browser — nothing is sent anywhere.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    &copy; 2026 HeartCare. For educational purposes only — not a substitute for professional medical advice.
+  </footer>
+
+  <script>
+    document.getElementById("patientForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const patient = Object.fromEntries(formData.entries());
+
+      // Keep a local copy either way, then try to save to the backend
+      try {
+        sessionStorage.setItem("kindlyheart_patient", JSON.stringify(patient));
+      } catch (err) {
+        console.warn("Could not save patient details locally:", err);
+      }
+
+      try {
+        const res = await fetch("/api/patients", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(patient),
+        });
+        if (!res.ok) throw new Error(`Backend responded ${res.status}`);
+        console.info("Patient details saved to backend database.");
+      } catch (err) {
+        console.warn("Backend unavailable, patient details kept locally only:", err.message);
+      }
+
+      window.location.href = "index.html";
+    });
+  </script>
+
+</body>
+</html>

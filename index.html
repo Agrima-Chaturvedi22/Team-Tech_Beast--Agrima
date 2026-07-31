@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HeartCare — Heart Disease Risk Predictor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <div class="bg-glow bg-glow--1"></div>
+  <div class="bg-glow bg-glow--2"></div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <div class="logo"><span class="logo__icon">♥</span> KindlyHeart</div>
+      <nav class="nav">
+        <a href="#predict">Predict</a>
+        <a href="#reminders">Reminders</a>
+        <a href="#methodology">How it works</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="eyebrow">AI-assisted screening</div>
+      <h1>Know your heart risk in seconds</h1>
+      <p class="hero__desc">
+        Enter a few clinical details and get an instant, model-based estimate of your
+        heart disease risk, along with personalized lifestyle recommendations.
+      </p>
+    </div>
+  </section>
+
+  <section class="methodology" id="methodology">
+    <div class="container">
+      <h2>How the prediction works</h2>
+      <div class="steps">
+        <div class="step"><span>1</span>You enter clinical values</div>
+        <div class="step-arrow">↓</div>
+        <div class="step"><span>2</span>A logistic regression model scores your risk</div>
+        <div class="step-arrow">↓</div>
+        <div class="step"><span>3</span>You get a risk probability and tailored tips</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="predict container" id="predict">
+
+    <div class="card">
+      <h2>Check your risk</h2>
+      <p class="card__subtitle">Fill in all fields, then analyze.</p>
+
+      <form id="predictionForm">
+        <div class="form-grid">
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" value="54" min="1" max="120" required>
+          </div>
+
+          <div class="field">
+            <label for="sex">Sex</label>
+            <select id="sex" name="sex" required>
+              <option value="1">Male</option>
+              <option value="0">Female</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cp">Chest Pain Type</label>
+            <select id="cp" name="cp" required>
+              <option value="0">Typical Angina</option>
+              <option value="1">Atypical Angina</option>
+              <option value="2">Non-anginal</option>
+              <option value="3">Asymptomatic</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="trestbps">Resting BP (mm Hg)</label>
+            <input type="number" id="trestbps" name="trestbps" value="130" min="60" max="260" required>
+          </div>
+
+          <div class="field">
+            <label for="chol">Cholesterol (mg/dl)</label>
+            <input type="number" id="chol" name="chol" value="245" min="80" max="700" required>
+          </div>
+
+          <div class="field">
+            <label for="fbs">Fasting Blood Sugar &gt; 120</label>
+            <select id="fbs" name="fbs" required>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="restecg">Resting ECG</label>
+            <select id="restecg" name="restecg" required>
+              <option value="0">Normal</option>
+              <option value="1">ST-T Abnormality</option>
+              <option value="2">LV Hypertrophy</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="thalach">Max Heart Rate</label>
+            <input type="number" id="thalach" name="thalach" value="150" min="60" max="250" required>
+          </div>
+
+          <div class="field">
+            <label for="exang">Exercise-Induced Angina</label>
+            <select id="exang" name="exang" required>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--primary">Analyze Heart Risk</button>
+      </form>
+    </div>
+
+    <div class="card resultsPanel hidden" id="resultsPanel">
+      <h2>Your Result</h2>
+
+      <span class="risk-badge" id="riskBadge"></span>
+      <p class="risk-message" id="riskMessage"></p>
+
+      <div class="probability-bar">
+        <div class="probability-bar__fill" id="probabilityFill"></div>
+      </div>
+      <p class="probability-text">Risk probability: <strong id="probabilityText">0%</strong></p>
+
+      <div class="chart-wrap" style="max-width:220px;margin:0 auto 1.5rem;">
+        <canvas id="riskChart"></canvas>
+      </div>
+
+      <div class="recommendations">
+        <h3>Recommendations</h3>
+        <ul id="recommendationsList"></ul>
+
+        <h3>Lifestyle Tips</h3>
+        <ul id="lifestyleList"></ul>
+      </div>
+
+      <p class="disclaimer">
+        This tool provides an educational estimate only and is not a medical diagnosis.
+        Please consult a qualified physician for any health concerns.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="reminders container" id="reminders">
+    <div class="card">
+      <h2>Medicine Reminders</h2>
+      <p class="card__subtitle">Set daily reminders so you never miss a dose.</p>
+
+      <form id="reminderForm" class="reminder-form">
+        <input type="text" id="medicineName" placeholder="Medicine name" required>
+        <input type="time" id="reminderTime" required>
+        <button type="submit" class="btn btn--secondary">Add Reminder</button>
+      </form>
+
+      <ul class="reminder-list" id="reminderList"></ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    &copy; 2026 HeartCare. For educational purposes only — not a substitute for professional medical advice.
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- Chat Button -->
+<div id="chatbot">
+  <div id="chat-header">HeartCare Assistant ❤️</div>
+
+  <div id="chat-messages">
+    <div class="bot-msg">
+      Hi! Ask me about heart health, blood pressure, cholesterol, or using this website.
+    </div>
+  </div>
+
+  <div id="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+</body>
+</html>
