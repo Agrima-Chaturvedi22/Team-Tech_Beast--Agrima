@@ -1,59 +1,193 @@
-# KindlyHeart Backend
+# ❤️ KindlyHeart
 
-A Flask backend that turns the static HeartCare site into a real client–server
-app.
+**AI-Powered Heart Disease Risk Prediction Web Application**
 
-## What it actually does (for the demo)
+> Developed by **Team Tech_Beast**
 
-- On startup, it **trains a real scikit-learn Logistic Regression model**
-  directly from `heart.csv` (303 patients from the UCI heart disease
-  dataset) — not hardcoded numbers. You'll see the training/test accuracy
-  printed in the terminal when it starts.
-- `index.html`'s form now calls this backend (`POST /api/predict`) to get
-  its risk prediction, instead of computing it in the browser. If the
-  backend can't be reached, the page quietly falls back to its old local
-  JS model, so it never breaks — but with the server running, the
-  prediction really does come from the trained model.
-- `patient-details.html` now saves each submitted patient into a real
-  SQLite database (`kindlyheart.db`) via `POST /api/patients`, in addition
-  to keeping a local copy in the browser.
-- The same server also serves the website itself, so everything runs from
-  one command.
+---
 
-## How to run it
+## 📌 Overview
 
-```bash
-cd backend
-pip install -r requirements.txt
-python app.py
+KindlyHeart is an AI-assisted healthcare web application designed to help in the **early detection of heart disease**. The system analyzes patient health parameters using a **Machine Learning (Logistic Regression) model** and predicts whether the user is at **low or high risk** of heart disease.
+
+The application also provides:
+
+- 📊 Risk probability with visual indicators
+- 🩺 Personalized health recommendations
+- 🥗 Diet and exercise suggestions
+- ⏰ Medicine reminders
+- 💬 AI chatbot support for user queries
+
+---
+
+## 🎯 Problem Statement
+
+Heart disease is one of the leading causes of death worldwide. Many patients are diagnosed only after symptoms become severe, reducing the chances of successful treatment.
+
+**Predict. Prevent. Protect.**
+
+---
+
+## 🚀 Features
+
+- ✅ Heart disease risk prediction
+- ✅ Probability/confidence score
+- ✅ Personalized recommendations
+- ✅ Lifestyle and diet suggestions
+- ✅ Medicine reminder system
+- ✅ Responsive and user-friendly interface
+- ✅ AI chatbot integration
+
+---
+
+## 🛠️ Technologies Used
+
+| Component | Technology |
+|---|---|
+| Frontend | HTML, CSS, JavaScript |
+| Backend | Python |
+| Machine Learning | Scikit-learn |
+| Database | CSV File |
+| Dataset | Heart Disease Dataset |
+
+
+---
+
+## 🧠 Machine Learning Workflow
+
+```text
+Collect Dataset
+      ↓
+Data Cleaning & Preprocessing
+      ↓
+Feature Selection
+      ↓
+Train Logistic Regression Model
+      ↓
+Model Testing & Evaluation
+      ↓
+Predict Heart Disease Risk
 ```
 
-Then open **http://127.0.0.1:5000/patient-details.html** in your browser
-and use the site normally.
+---
 
-## Endpoints (useful to show your teacher directly)
+## 📋 Input Parameters
 
-| Method | Endpoint         | What it does                                      |
-|--------|------------------|----------------------------------------------------|
-| GET    | `/api/health`    | Confirms the server is up and the model is loaded, with its accuracy |
-| POST   | `/api/predict`   | Takes patient vitals, returns risk probability from the trained model |
-| POST   | `/api/patients`  | Saves a patient's details to the database          |
-| GET    | `/api/patients`  | Lists every patient saved so far                   |
+The model may use the following clinical features:
 
-Quick things to try live:
+- Age
+- Sex
+- Chest Pain Type
+- Resting Blood Pressure
+- Cholesterol
+- Fasting Blood Sugar
+- Resting ECG Results
+- Maximum Heart Rate
+- Exercise-Induced Angina
+- ST Depression (if included)
 
-- Open `http://127.0.0.1:5000/api/health` in a browser tab — shows the
-  model's training/test accuracy pulled straight from `heart.csv`.
-- Fill in the patient details form → submit → open
-  `http://127.0.0.1:5000/api/patients` in another tab to show the saved
-  record just landed in the database.
-- Fill in the risk predictor form on the main page → the result now comes
-  from the real trained model, not a hardcoded formula.
+---
 
-## Files
+## 📷 Project Screenshots
 
-- `app.py` — the Flask server (model training + API + serving the site)
-- `heart.csv` — the training dataset
-- `requirements.txt` — Python dependencies
-- `kindlyheart.db` — created automatically the first time you run the
-  server; stores submitted patients
+### Home Page
+<img width="738" height="903" alt="image" src="https://github.com/user-attachments/assets/c3289155-b8e1-4d87-ad11-3ca1578ea76c" />
+
+
+### Prediction Result
+<img width="697" height="337" alt="image" src="https://github.com/user-attachments/assets/a67d2f26-13ca-405a-a0f7-112d7c11cbb3" />
+
+
+### Medicine Reminder
+<img width="1202" height="382" alt="image" src="https://github.com/user-attachments/assets/5c5a45e1-7c18-4428-bc68-afaa4947aad2" />
+
+
+### AI Chatbot
+<img width="397" height="415" alt="image" src="https://github.com/user-attachments/assets/3853221a-8b90-49b3-b17e-cc933f70147a" />
+
+
+---
+
+## 💡 How It Works
+
+-User enters medical details.
+-Data is validated and preprocessed.
+-Logistic Regression model calculates risk probability.
+-Result is displayed with confidence score.
+-Personalized recommendations are generated.
+
+---
+
+## 📈 Expected Impact
+
+- Early detection of heart disease
+- Faster medical decision support
+- Reduced healthcare costs
+- Better patient monitoring
+- Improved accessibility in rural healthcare areas
+
+> **KindlyHeart supports doctors — it does not replace professional medical diagnosis.**
+
+---
+
+## ⚠️ Limitations
+
+- Accuracy depends on dataset quality
+- Predictions are not a medical diagnosis
+- Different populations may require model retraining
+- Privacy and security must be ensured during deployment
+
+---
+
+## 🔒 Future Improvements
+
+- Use larger medical datasets
+- Improve chatbot intelligence
+- Add user authentication
+- Store patient history securely
+- Integrate with hospital management systems
+
+---
+
+## 🧪 Running the Project
+
+### Frontend
+HTML
+CSS
+Java Script
+
+### Backend (Python)
+Python
+
+## 👥 Team
+
+### 🐉 Team Tech_Beast
+
+- Vaidehi Upadhyay
+- Agrima Chaturvedi
+- Adit Mehta
+- Shalabh Pachori
+- Aarushi Jain
+
+---
+
+## 📚 References
+
+- Scikit-learn Documentation
+- Python Documentation
+- Heart Disease Dataset (Kaggle)
+- Research papers on heart disease prediction
+
+---
+
+## 📄 License
+
+This project is developed for educational and hackathon purposes.
+
+---
+
+## ❤️ Acknowledgement
+
+Thank you for checking out **KindlyHeart**.
+
+**Predict. Prevent. Protect.**
