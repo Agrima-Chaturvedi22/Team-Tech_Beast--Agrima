@@ -49,7 +49,7 @@ Heart disease is one of the leading causes of death worldwide. Many patients are
 | Machine Learning | Scikit-learn |
 | Database | CSV File |
 | Dataset | Heart Disease Dataset |
-| Deployment | Streamlit / Render |
+
 
 ---
 
@@ -84,7 +84,7 @@ The model may use the following clinical features:
 - Resting ECG Results
 - Maximum Heart Rate
 - Exercise-Induced Angina
-- ST Depression (if included)
+
 
 ---
 
@@ -106,7 +106,11 @@ _Add screenshot here_
 
 ## 💡 How It Works
 
-<List gap={2}><List.Item>User enters medical details.</List.Item><List.Item>Data is validated and preprocessed.</List.Item><List.Item>Logistic Regression model calculates risk probability.</List.Item><List.Item>Result is displayed with confidence score.</List.Item><List.Item>Personalized recommendations are generated.</List.Item></List>
+-User enters medical details.
+-Data is validated and preprocessed.
+-Logistic Regression model calculates risk probability.
+-Result is displayed with confidence score.
+-Personalized recommendations are generated.
 
 ---
 
@@ -134,7 +138,6 @@ _Add screenshot here_
 ## 🔒 Future Improvements
 
 - Use larger medical datasets
-- Add Random Forest / XGBoost models
 - Improve chatbot intelligence
 - Add user authentication
 - Store patient history securely
@@ -145,20 +148,14 @@ _Add screenshot here_
 ## 🧪 Running the Project
 
 ### Frontend
-
-Open `index.html` in your browser.
+HTML
+Java script 
+CSS
 
 ### Backend (Python)
-
-```bash
-pip install -r requirements.txt
-python app.py
-```
-
----
+Python
 
 ## 👥 Team
-
 ### 🐉 Team Tech_Beast
 
 - Agrima Chaturvedi
@@ -173,7 +170,7 @@ python app.py
 
 - Scikit-learn Documentation
 - Python Documentation
-- Heart Disease Dataset (UCI / Kaggle)
+- Heart Disease Dataset (Kaggle)
 - Research papers on heart disease prediction
 
 ---
@@ -188,4 +185,4 @@ This project is developed for educational and hackathon purposes.
 
 Thank you for checking out **KindlyHeart**.
 
-**Early detection for better healthcare.**
+**Predict. Prevent. Protect.**
